@@ -1,9 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Crear";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Ventas</a></li>
@@ -16,7 +15,7 @@
         <div class="card border-info">
             <div class="card-header p-2 bg-info text-white">
                 Detalle Venta
-                <button id="btnTerminarGuardarVenta" class="btn btn-warning btn-sm float-right">
+                <button id="btnTerminarGuardarVenta" class="btn btn-warning btn-sm float-right" disabled>
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
                 </button>
             </div>
@@ -76,7 +75,8 @@
                                     <div class="col-sm-4">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Direccion:</label>
-                                            <label class="form-control form-control-sm model mb-1" readonly id="lbltiendadireccion"></label>
+                                            <label class="form-control form-control-sm model mb-1" readonly id="lbltiendadireccion" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;  " ></label>
+                                            @* style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;  " *@
                                         </div>
                                     </div>
                                 </div>
@@ -137,8 +137,8 @@
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Tipo Documento:</label>
                                             <select class="form-control form-control-sm model" id="cboclientetipodocumento" name="Rol">
-                                                <option value="DNI">Cedula Nacional</option>
-                                                <option value="Carnet Extranjeria">Pasaporte Extranjero</option>
+                                                <option value="Cedula">Cedula Nacional</option>
+                                                <option value="Pasaporte Extranjero">Pasaporte Extranjero</option>
                                                 <!--  <option value="RUC"></option> -->
                                             </select>
                                         </div>
@@ -187,7 +187,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group mb-0">
                                             <label for="txtproductocodigo" class="col-form-label col-form-label-sm">Codigo: <span class="required">*</span></label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtproductocodigo" name="Codigo" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" readonly id="txtproductocodigo" name="Codigo" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -306,7 +306,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <button id="btncalcular" type="button" class="btn btn-sm btn-success btn-block"> <!--<i class="fas fa-dollar-sign"></i>--> Calcular C$</button>
+                                <button id="btncalcular" type="button" class="btn btn-sm btn-success btn-block" disabled> Calcular C$</button>
                             </div>
                             <div class="col-sm-4">
                                 <div class="input-group input-group-sm mb-2">
@@ -386,6 +386,57 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('txtproductocantidad').addEventListener('change', function() {
+        var stock = parseInt(document.getElementById('txtproductostock').value);
+        var quantity = parseInt(this.value);
+    
+        if(quantity > stock) {
+            this.value = stock;
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La cantidad no puede ser mayor que el stock disponible'
+            });
+        } else if(quantity < 0) {
+            this.value = 0;
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La cantidad no puede ser un valor negativo'
+            });
+        }
+    });
+    
+   // Obtén los elementos del botón
+   var calcularButton = document.getElementById('btncalcular');
+   var terminarButton = document.getElementById('btnTerminarGuardarVenta');
+   
+   // Agrega un detector de eventos al campo de entrada "Monto Paga"
+   document.getElementById('txtmontopago').addEventListener('input', function() {
+       var montoPaga = this.value;
+       var total = parseFloat(document.getElementById('txttotal').value);
+       var cambio = parseFloat(document.getElementById('txtcambio').value)
+   
+       // Verifica si "Monto Paga" es un número, si es menor o igual a "Total" y si "Total" es mayor que 0
+       var isValid = !isNaN(montoPaga) && parseFloat(montoPaga) >= total && montoPaga !== '' && montoPaga !== null && total > 0 && cambio !== null;
+   
+       if (isValid) {
+           // Si se cumplen las condiciones, habilita los botones
+           calcularButton.disabled = false;
+           terminarButton.disabled = false;
+           document.getElementById('textcambio').value = null;
+           document.getElementById('textcambio').value = 0;
+       } else {
+           // Si no se cumplen las condiciones, deshabilita los botones
+           calcularButton.disabled = true;
+           terminarButton.disabled = true;
+       }
+   });
+       
+    
+</script>
 
 @section scripts{
     <script src="@Url.Content("~/Scripts/Views/Venta_Crear.js")" type="text/javascript"></script>
