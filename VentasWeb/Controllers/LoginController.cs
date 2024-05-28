@@ -28,6 +28,12 @@ namespace VentasWeb.Controllers
                 ViewBag.Error = "Usuario o contraseña no correcta";
                 return View();
             }
+            
+            if (!ousuario.Activo)
+            {
+                ViewBag.Error = "Este usuario está inactivo y no puede iniciar sesión.";
+                return View();
+            }
 
             Session["Usuario"] = ousuario;
 
