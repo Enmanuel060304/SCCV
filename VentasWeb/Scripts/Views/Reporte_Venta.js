@@ -129,8 +129,11 @@ function printData() {
     style = style + "table {width: 100%;font: 17px Calibri;}";
     style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
     style = style + "padding: 2px 3px;text-align: center;}";
+    style = style + "th {background-color: #4CAF50;color: white;}"; // Header background color
+    style = style + "tr:nth-child(even) {background-color: #f2f2f2;}"; // Zebra striping for rows
+    style = style + "td {padding: 15px;text-align: left;border-bottom: 1px solid #ddd;}"; // Cell padding and border
     style = style + "</style>";
-
+    
     newWin = window.open("");
 
 

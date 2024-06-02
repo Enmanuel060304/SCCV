@@ -20,6 +20,7 @@
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-info" style="font-weight:bold">
         <a class="navbar-brand" href="#">
             <img src="@Url.Content("~/Imagenes/logo_ADI.png")" width="60" height="50" alt="logo">
+            <strong class="navbar-text">ADI OFC</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,7 +39,7 @@
                 <li class="nav-item">
                     <a href="@Url.Action("Salir", "Home")" class="nav-link">
                         <span>
-                            <strong> @ViewBag.NombreUsuario</strong>
+                            <strong class="nav-item"> @ViewBag.NombreUsuario</strong>
                             <i class="fas fa-sign-out-alt ml-4"></i> 
                             <strong>Salir</strong>
                         </span>
