@@ -7,9 +7,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Login</title>
     @Styles.Render("~/Content/css")
     <style>
+            body{
+                  background-image: url('@Url.Content("~/Imagenes/back.png")');
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+                        background-size: 25%;
+                        background-position: center;
+            }
             #logn-d {
                 background-color:#10707f;
                 
@@ -18,6 +25,7 @@
                 background-attachment: fixed;
                 background-size: cover;
             }
+            
     </style>
 
 </head>
@@ -45,12 +53,12 @@
 
                                         <form action="@Url.Content("~/Login/Index")" method="post" class="p-2">
                                             <div class="form-group">
-                                                <label for="emailaddress" style="color: white">Correo</label>
+                                                <label for="emailaddress" style="font-family: 'Verdana', sans-serif">Correo</label>
                                                 <input class="form-control" type="email" name="correo" required="" autocomplete="off" placeholder="Ingresa Correo">
                                             </div>
                                             <div class="form-group">
-                                                <label for="password" style="color: white">Contraseña</label>
-                                                <input class="form-control" type="password" required="" name="clave" autocomplete="off" placeholder="Ingresa Contraseña">
+                                                <label style="font-family: 'Verdana', sans-serif" for="password">Contraseña</label>
+                                                <input class="form-control" type="password" required="" name="clave" autocomplete="off" placeholder="Ingresa Contraseña" >
                                             </div>
 
                                             <div class="mb-3 text-center">
