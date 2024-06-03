@@ -125,8 +125,8 @@
                             <tr>
                             <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
                             <td>@Html.DisplayFor(modelItem => item.oProducto.Nombre)</td>
-                            <td>@Html.DisplayFor(modelItem => item.PrecioUnitarioCompra)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalCosto)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PrecioUnitarioCompra) C$</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalCosto) C$</td>
                             </tr>
                         }
                 </tbody>
@@ -140,7 +140,7 @@
                 <tbody>
                     <tr>
                         <th>Total</th>
-                        <td><span>@Html.DisplayTextFor(model => model.TotalCosto)</span></td>
+                        <td><span>@Html.DisplayTextFor(model => model.TotalCosto)</span> C$</td>
                     </tr>
                 </tbody>
             </table>

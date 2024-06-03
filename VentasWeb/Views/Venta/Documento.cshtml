@@ -117,8 +117,8 @@
                             <tr>
                             <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
                             <td>@Html.DisplayFor(modelItem => item.NombreProducto)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TextoPrecioUnidad)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TextoImporteTotal)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TextoPrecioUnidad) C$</td>
+                            <td>@Html.DisplayFor(modelItem => item.TextoImporteTotal) C$</td>
                             </tr>
                         }
                 </tbody>
@@ -132,15 +132,15 @@
                 <tbody>
                     <tr>
                         <th>Pago con:</th>
-                        <td> <span>@Html.DisplayTextFor(model => model.TextoImporteRecibido)</span> </td>
+                        <td> <span>@Html.DisplayTextFor(model => model.TextoImporteRecibido)</span> C$</td>
                     </tr>
                     <tr>
                         <th>Cambio:</th>
-                        <td> <span>@Html.DisplayTextFor(model => model.TextoImporteCambio)</span> </td>
+                        <td> <span>@Html.DisplayTextFor(model => model.TextoImporteCambio)</span> C$</td>
                     </tr>
                     <tr>
                         <th>Total</th>
-                        <td><span id="totalcosto">@Html.DisplayTextFor(model => model.TextoTotalCosto)</span></td>
+                        <td><span id="totalcosto">@Html.DisplayTextFor(model => model.TextoTotalCosto)</span> C$</td>
                     </tr>
                 </tbody>
             </table>
