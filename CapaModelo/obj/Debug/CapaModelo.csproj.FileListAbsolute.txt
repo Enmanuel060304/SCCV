@@ -10,3 +10,9 @@ C:\Users\DELL\Downloads\022_SistemaVentaAspMVC-main\022_SistemaVentaAspMVC-main\
 C:\Users\DELL\Downloads\022_SistemaVentaAspMVC-main\022_SistemaVentaAspMVC-main\CapaModelo\bin\Debug\CapaModelo.pdb
 C:\Users\DELL\Downloads\022_SistemaVentaAspMVC-main\022_SistemaVentaAspMVC-main\CapaModelo\obj\Debug\CapaModelo.csproj.AssemblyReference.cache
 C:\Users\DELL\Downloads\022_SistemaVentaAspMVC-main\022_SistemaVentaAspMVC-main\CapaModelo\obj\Debug\CapaModelo.csproj.CoreCompileInputs.cache
+C:\Users\orlan\RiderProjects\SCCV\CapaModelo\bin\Debug\CapaModelo.dll
+C:\Users\orlan\RiderProjects\SCCV\CapaModelo\bin\Debug\CapaModelo.pdb
+C:\Users\orlan\RiderProjects\SCCV\CapaModelo\obj\Debug\CapaModelo.csproj.AssemblyReference.cache
+C:\Users\orlan\RiderProjects\SCCV\CapaModelo\obj\Debug\CapaModelo.csproj.CoreCompileInputs.cache
+C:\Users\orlan\RiderProjects\SCCV\CapaModelo\obj\Debug\CapaModelo.dll
+C:\Users\orlan\RiderProjects\SCCV\CapaModelo\obj\Debug\CapaModelo.pdb

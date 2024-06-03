@@ -2016,6 +2016,10 @@
     <Content Include="Scripts\Views\Rol_Crear.js" />
     <Content Include="Scripts\Views\Venta_Consultar.js" />
     <Content Include="Scripts\Views\Venta_Crear.js" />
+    <Content Include="Views\Login\adi-bk.png" />
+    <Content Include="Views\Login\adi_bk.jpg" />
+    <Content Include="Views\Login\joya.png" />
+    <Content Include="Views\Login\jy.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
