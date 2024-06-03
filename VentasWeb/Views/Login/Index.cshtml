@@ -9,8 +9,19 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     @Styles.Render("~/Content/css")
+    <style>
+            #logn-d {
+                background-color:#10707f;
+                
+                background-repeat: no-repeat;
+                
+                background-attachment: fixed;
+                background-size: cover;
+            }
+    </style>
+
 </head>
-<body class="bg-info">
+<body class="bg-info" id="logn-d">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -18,7 +29,7 @@
                     <div class="w-100 d-block my-5">
                         <div class="row justify-content-center">
                             <div class="col-md-8 col-lg-5">
-                                <div class="card">
+                                <div class="card" style="background: rgba(255,255,255,0.4); border-radius: max(3em)">
                                     <div class="card-body">
                                         <div class="text-center mb-4 mt-3">
                                             <a href="#">
@@ -34,11 +45,11 @@
 
                                         <form action="@Url.Content("~/Login/Index")" method="post" class="p-2">
                                             <div class="form-group">
-                                                <label for="emailaddress">Correo</label>
+                                                <label for="emailaddress" style="color: white">Correo</label>
                                                 <input class="form-control" type="email" name="correo" required="" autocomplete="off" placeholder="Ingresa Correo">
                                             </div>
                                             <div class="form-group">
-                                                <label for="password">Contraseña</label>
+                                                <label for="password" style="color: white">Contraseña</label>
                                                 <input class="form-control" type="password" required="" name="clave" autocomplete="off" placeholder="Ingresa Contraseña">
                                             </div>
 

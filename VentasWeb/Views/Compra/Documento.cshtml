@@ -4,209 +4,171 @@
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="es">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factura Compra</title>
-    @Styles.Render("~/Content/PluginsCSS")
-    <style type="text/css">
-           body {
-               font-family: 'Roboto', sans-serif;
-           }
-           .invoice-box {
-               max-width: 800px;
-               margin: auto;
-               padding: 30px;
-               border: 1px solid #eee;
-               box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-               font-size: 16px;
-               line-height: 24px;
-               color: #555;
-           }
-           .invoice-box table {
-               width: 100%;
-               line-height: inherit;
-               text-align: left;
-           }
-           .invoice-box table td {
-               padding: 5px;
-               vertical-align: top;
-           }
-           .invoice-box table tr td:nth-child(2) {
-               text-align: right;
-           }
-           .invoice-box table tr.top table td {
-               padding-bottom: 20px;
-           }
-           .invoice-box table tr.top table td.title {
-               font-size: 45px;
-               line-height: 45px;
-               color: #333;
-           }
-           .invoice-box table tr.information table td {
-               padding-bottom: 40px;
-           }
-           .invoice-box table tr.heading td {
-               background: #eee;
-               border-bottom: 1px solid #ddd;
-               font-weight: bold;
-           }
-           .invoice-box table tr.details td {
-               padding-bottom: 20px;
-           }
-           .invoice-box table tr.item td{
-               border-bottom: 1px solid #eee;
-           }
-           .invoice-box table tr.item.last td {
-               border-bottom: none;
-           }
-           .invoice-box table tr.total td:nth-child(2) {
-               border-top: 2px solid #eee;
-               font-weight: bold;
-           }
-           
-       </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .invoice-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #007bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .invoice-header img {
+            max-width: 150px;
+        }
+        .invoice-title {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 0;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            color: #007bff;
+            border-bottom: 1px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .invoice-details, .customer-details, .employee-details {
+            margin-bottom: 20px;
+        }
+        .invoice-table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .invoice-table th, .invoice-table td {
+            text-align: left;
+        }
+        .invoice-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 2px solid #007bff;
+            padding-top: 10px;
+        }
+        .totals-table th, .totals-table td {
+            text-align: right;
+        }
+        .totals-table th {
+            width: 70%;
+        }
+        .bg-light-gray {
+            background-color: #f8f9fa;
+        }
+        .btn-print {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div style="font-size: 11px; text-align: right;">
-        <center>
-            <button type="button" id="Imprimir" class="btn btn-secondary" onclick="javascript:imprSelec('seleccion')"><i class="fas fa-print"></i> Imprimir</button>
-        </center>
-        <br>
+<div style="font-size: 11px; text-align: right; margin-top: 20px; margin-bottom: 20px;">
+    <center>
+        <button type="button" class="btn btn-primary" onclick="javascript:imprSelec('documento')">Imprimir</button>
+    </center>
+</div>
+<div class="container bg-light-gray py-4" id="documento">
+    <!-- Cabecera de la factura -->
+    <div class="invoice-header">
+        <div>
+            <h3>Joyeria ADI</h3>
+            <p><span>@Html.DisplayTextFor(model => model.oUsuario.Nombres) @Html.DisplayTextFor(model => model.oUsuario.Apellidos)</span></p>
+        </div>
+        <div class="text-right">
+            <h1 class="invoice-title">Factura Compra</h1>
+            <p></p>
+            <p>Número de Factura:  <span>@Html.DisplayTextFor(model => model.Codigo)</span> </p>
+            <p>Fecha: <span>@Html.DisplayTextFor(model => model.FechaCompra)</span></p>
+        </div>
     </div>
-    <div id="seleccion">
-        <center>
-            <table style="width: 650px; border:2px solid #17a2b8;padding: 10px;">
-                <tr>
-                    <td>
-                        <table id="cabezera">
+    <!-- Información del cliente -->
+    <div class="row customer-details">
+        <div class="col-12">
+            <h4 class="section-title">Proveedor:</h4>
+            <p>ID:<span>@Html.DisplayTextFor(model => model.oProveedor.Ruc)</span></p>
+            <p>Dirección del Proveedor: <span>@Html.DisplayTextFor(model => model.oProveedor.RazonSocial)</span></p>
+            <p>Razon Social: <span>@Html.DisplayTextFor(model => model.oProveedor.RazonSocial)</span></p>
+            <p>Numero de Telefono: <span>@Html.DisplayTextFor(model => model.oProveedor.Telefono)</span></p>
+        </div>
+    </div>
+
+    <div class="row customer-details">
+        <div class="col-12">
+            <h4 class="section-title">Tienda Destino</h4>
+            <p>ID:<span>@Html.DisplayTextFor(model => model.oTienda.RUC)</span> </p>
+            <p>Nombre: <span id="nombretienda">@Html.DisplayTextFor(model => model.oTienda.Nombre)</span></p>
+            <p>Direccion: <span id="nombretienda">@Html.DisplayTextFor(model => model.oTienda.Direccion)</span></p>
+        </div>
+    </div>
+    <!-- Información del empleado -->
+    <h4 class="section-title">Detalle Productos</h4>
+    
+    <!-- Tabla de artículos -->
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered invoice-table">
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Concepto</th>
+                        <th>P.unit Compra</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.oListaDetalleCompra)
+                        {
                             <tr>
-                                <td style="width:140px">
-                                    <img src="@Url.Content("~/Imagenes/logo_ADI.png")" alt="Logo ADI" height="100" width="100">
-                                </td>
-                                <td style="width:340px">
-                                    <table style="width:100%">
-                                        <tr><td><label style="font-size:20px;font-weight:bold;text-align:center;width:100%;display:block">Joyeria ADI</label></td></tr>
-                                        <tr><td colspan="4" align="center" style="font-size:14px"><span>Tienda: @Html.DisplayTextFor(model => model.oTienda.Nombre) </span></td> </tr>
-                                        <tr><td colspan="4" align="center" style="font-size:14px"><span>Direccion: @Html.DisplayTextFor(model => model.oTienda.Direccion) </span></td> </tr>
-                                        <!-- <tr><td><label style="text-align:center;width:100%;display:block">test@gmmail.com</label></td></tr> -->
-                                    </table>
-                                </td>
-                                <td style="width:150px;">
-                                    <table style="height: 90px; width:100%; font-weight: bold;border:2px solid #17a2b8;">
-                                        <tbody>
-                                            <tr style="color:#fff;background-color:#17a2b8; -webkit-print-color-adjust: exact;"><td align="center">COMPRA</td></tr>
-                                            <tr><td align="center">NRO - <span>@Html.DisplayTextFor(model => model.Codigo)</span> </td></tr>
-                                            <tr><td align="center">Fecha - <span>@Html.DisplayTextFor(model => model.FechaCompra)</span> </td></tr>
-                                        </tbody>
-                                    </table>
-                                </td>
+                            <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.oProducto.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PrecioUnitarioCompra)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalCosto)</td>
                             </tr>
-                        </table>
-
-                    </td>
-                </tr>
-                <tr style="height: 20px;"><td><br></td></tr>
-                <tr>
-                    <td>
-                        <table style="width: 100%;">
-                            <tbody>
-                                <tr style="color:#fff;background-color:#17a2b8; -webkit-print-color-adjust: exact;">
-                                    <td style="padding:4px" colspan="4">
-                                        <u>Detalle Proveedor</u>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="15">ID:</td>
-                                    <td style="border-bottom: 1px solid black;"><center><span>@Html.DisplayTextFor(model => model.oProveedor.Ruc)</span></center></td>
-                                    <td width="100">Razon Social:</td>
-                                    <td style="border-bottom: 1px solid black;"><center><span>@Html.DisplayTextFor(model => model.oProveedor.RazonSocial)</span></center></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr><td><hr /></td></tr>
-                <tr>
-                    <td>
-                        <table style="width: 100%;">
-                            <tbody>
-                                <tr style="color:#fff;background-color:#17a2b8; -webkit-print-color-adjust: exact;">
-                                    <td style="padding:4px" colspan="4">
-                                        <u>Tienda Destino</u>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="15">ID:</td>
-                                    <td style="border-bottom: 1px solid black;"><center><span>@Html.DisplayTextFor(model => model.oTienda.RUC)</span></center></td>
-                                    <td width="110">Nombre Tienda:</td>
-                                    <td style="border-bottom: 1px solid black;"><center><span id="nombretienda">@Html.DisplayTextFor(model => model.oTienda.Nombre)</span></center></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr><td><hr /></td></tr>
-                <tr style="color:#fff;background-color:#17a2b8; -webkit-print-color-adjust: exact;">
-                    <td style="padding:4px">
-                        <u>Detalle Productos</u>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table id="tbCompras" border="1" style=" width: 100%;">
-                            <thead>
-                                <tr bgcolor="#D9D9D9">
-                                    <th style="width: 15%;">Cantidad</th>
-                                    <th style="width: 50%;">Concepto</th>
-                                    <th style="width: 20%;">P.Unit Compra</th>
-                                    <th style="width: 25%;">Importe</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.oListaDetalleCompra)
-                                {
-
-                                    <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.oProducto.Nombre)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.PrecioUnitarioCompra)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.TotalCosto)</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        <table style="font-weight: bold; width: 150px;">
-                            <tbody>
-                                <tr>
-                                    <td>Total C$</td>
-                                    <td style="border:1px solid black;"><span>@Html.DisplayTextFor(model => model.TotalCosto)</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
+                        }
+                </tbody>
             </table>
-        </center>
+        </div>
     </div>
-    @Scripts.Render("~/Content/PluginsJS")
-    <script>
+    <!-- Totales -->
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-6">
+            <table class="table table-bordered totals-table">
+                <tbody>
+                    <tr>
+                        <th>Total</th>
+                        <td><span>@Html.DisplayTextFor(model => model.TotalCosto)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Pie de página -->
+    <div class="row invoice-footer">
+        <div class="col-12">
+            <p>Gracias por su Compra.</p>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@Scripts.Render("~/Content/PluginsJS")
+<script>
+        //no quiero que aparezca la url a la hora de imprimir
         
-        function imprSelec(nombre) {
-            var printContents = document.getElementById(nombre).innerHTML;
-            var originalContents = document.body.innerHTML;
+    function imprSelec(nombre) {
+        var printContents = document.getElementById(nombre).innerHTML;
+        var originalContents = document.body.innerHTML;
 
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
 
-    </script>
-
+</script>
 </body>
 </html>
+
