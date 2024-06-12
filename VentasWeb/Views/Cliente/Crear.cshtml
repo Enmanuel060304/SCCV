@@ -7,7 +7,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Clientes</a></li>
+        <li class="breadcrumb-item"><a href="#"><i class="fas fa-user-friends"></i> Clientes</a></li>
         <li class="breadcrumb-item active" aria-current="page">Registrar</li>
     </ol>
 </nav>
@@ -75,25 +75,25 @@
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label col-form-label-sm">Numero Documento <span class="error"></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm required" id="txtNumeroDocumento" name="numerodocumento">
+                            <input type="text" class="form-control form-control-sm required" id="txtNumeroDocumento" name="numerodocumento" placeholder="XXX-XXXXXX-XXXXY" oninput="formatCedula(this)">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label col-form-label-sm">Nombres <span class="error"></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm required" id="txtNombres" name="nombres">
+                            <input type="text" class="form-control form-control-sm required" id="txtNombres" name="nombres" placeholder="Digita Nombre">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label col-form-label-sm">Direccion <span class="error"></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm required" id="txtDireccion" name="direccion">
+                            <input type="text" class="form-control form-control-sm required" id="txtDireccion" name="direccion" placeholder="Digita Direccion">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Telefono <span class="error"></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm required" id="txtTelefono" name="telefono">
+                            <input type="text" class="form-control form-control-sm required" id="txtTelefono" name="telefono" placeholder="Digita Telefono">
                         </div>
                     </div>
 
@@ -118,6 +118,37 @@
     </div>
 </div>
 
+
+<div class="form-group row" id="cedulaInput" style="display: none;">
+    <label for="txtCedula" class="col-sm-2 col-form-label col-form-label-sm">Cedula</label>
+    <div class="col-sm-10">
+        
+        <input type="text" class="form-control form-control-sm" id="txtCedula" placeholder="donde">
+    </div>
+</div>
+
+<script>
+    function formatCedula(input) {
+        // Remover cualquier carácter que no sea un dígito en los primeros 14 caracteres y una letra en el último
+        var cedula = input.value.slice(0, 15).replace(/\D/g, '') + input.value.slice(15).replace(/[^a-zA-Z]/g, '').toUpperCase();
+        
+        // Si la longitud de la cédula es mayor a 15, se elimina el exceso
+        if (cedula.length > 15) {
+            cedula = cedula.slice(0, 15);
+        }
+        
+        // Insertar el guion en la posición adecuada
+        var formattedCedula = cedula.slice(0, 3) + '-' + cedula.slice(3, 9) + '-' + cedula.slice(9, 14);
+        
+        // Si la cédula tiene 15 caracteres, agregar la letra al final
+        if (cedula.length === 15) {
+            formattedCedula += cedula.slice(14, 15);
+        }
+        
+        // Establecer el valor formateado de nuevo en el input
+        input.value = formattedCedula;
+    }
+</script>
 @section scripts{
     <script src="@Url.Content("~/Scripts/Views/Cliente_Crear.js")" type="text/javascript"></script>
 }

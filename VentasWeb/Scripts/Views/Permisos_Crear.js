@@ -14,7 +14,7 @@ $(document).ready(function () {
 
             $("#cboRol").html("");
 
-            $("<option>").attr({ "value": 0 }).text("-- Seleccione --").appendTo("#cboRol");
+            $("<option>").attr({ "value": 0 }).text("-- Seleccione un Rol--").appendTo("#cboRol");
             if (data.data != null)
                 $.each(data.data, function (i, item) {
 

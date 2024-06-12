@@ -21,7 +21,6 @@ namespace VentasWeb.Controllers
             {
                 ViewBag.NombreUsuario = SesionUsuario.Nombres + " " + SesionUsuario.Apellidos;
                 ViewBag.RolUsuario = SesionUsuario.oRol.Descripcion;
-
             }
             catch {
 

@@ -29,8 +29,8 @@ $(document).ready(function () {
     $("#txtFechaFin").datepicker();
     $("#txtFechaInicio").val(ObtenerFecha());
     $("#txtFechaFin").val(ObtenerFecha());
-
-
+    
+    
     tabladata = $('#tbVentas').DataTable({
         "ajax": {
             "url": $.MisUrls.url._ObtenerVentas + "?codigo=&fechainicio=" + ObtenerFecha() + "&fechafin=" + ObtenerFecha() + "&numerodocumento=&nombres=",

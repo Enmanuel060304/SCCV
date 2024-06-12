@@ -15,7 +15,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Reportes</a></li>
+        <li class="breadcrumb-item"><a href="#"><i class="fas fa-clipboard"></i> Reportes</a></li>
         <li class="breadcrumb-item active" aria-current="page">Ventas</li>
     </ol>
 </nav>
@@ -85,7 +85,24 @@
     </div>
 </div>
 
-
+<script>
+    window.onload = function() {
+                // Obtener la fecha actual
+                var today = new Date();
+                
+                // Formatear la fecha actual en el formato yyyy-mm-dd
+                var formattedToday = String(today.getDate()).padStart(2, '0') + '/' + String(today.getMonth() + 1).padStart(2, '0') + '/' + today.getFullYear();
+                
+                // Establecer el valor del primer campo de entrada de fecha a la fecha actual
+                document.getElementById('txtFechaFin').value = formattedToday;
+                
+                // Formatear la fecha del primer día del mes actual en el formato yyyy-mm-dd
+                var firstDayOfMonth = '01/' + String(today.getMonth() + 1).padStart(2, '0') + '/' + today.getFullYear();
+                
+                // Establecer el valor del segundo campo de entrada de fecha al primer día del mes actual
+                document.getElementById('txtFechaInicio').value = firstDayOfMonth;
+            }
+</script>
 @section scripts{
     <script src="@Url.Content("~/Scripts/Views/Reporte_Venta.js")" type="text/javascript"></script>
 }

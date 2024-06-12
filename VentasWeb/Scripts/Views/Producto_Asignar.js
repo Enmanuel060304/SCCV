@@ -220,7 +220,7 @@ function asignarProducto() {
                     $("#txtDescripcion").val("");
                 } else {
 
-                    swal("Mensaje", "No se pudo registrar la asignación", "warning")
+                    swal("Mensaje", "El Producto ya se encuentra Asignado", "error")
                 }
             },
             error: function (error) {

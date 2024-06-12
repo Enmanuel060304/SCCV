@@ -126,6 +126,7 @@
 <section>
     <div class="contenedor">
         <div class="Formulario">
+            
             @if (!string.IsNullOrEmpty(ViewBag.Error))
             {
                 <div class="alert alert-danger">
@@ -141,7 +142,7 @@
                     <input type="email" name="correo" required autocomplete="off">
                     <label for="emailaddress">Email</label>
                 </div>
-                    
+
                 <div class="input-contenedor">
                     @* <i class="fa-solid fa-lock"></i> *@
                     <input type="password" name="clave" required autocomplete="off" id="password">

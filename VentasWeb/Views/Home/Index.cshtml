@@ -1,40 +1,76 @@
 ﻿@{
-                /**/
-
-                ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Bienvenido</h1>
-    <p class="lead">@ViewBag.NombreUsuario</p>
+<div class="jumbotron text-center bg-light">
+    <h1 class="display-4">Bienvenido @ViewBag.NombreUsuario!</h1>
+    <p class="lead">@ViewBag.N</p>
     <p class="lead">ROL: @ViewBag.RolUsuario</p>
-    <!--  <p class="text-dark mb-0">Todos los derechos reservados &copy;<a href="https://ouo.io/RK1tRH" target="_blank" class="text-danger ml-1"></a></p> -->
+    @* <div id="container" style="width: 50%; height: 80vh; margin-top: 20px;"></div> *@
+    
+    
 </div>
-
-@*<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@
 
 
 @section scripts{
-    <script src="@Url.Content("~/Scripts/Views/Home_Index.js")" type="text/javascript"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="@Url.Content("~/Scripts/Views/Venta_Consultar.js")" type="text/javascript"></script>
+    <script>
+        // Create a new div element for the title
+        var titleDiv = document.createElement("div");
+    
+        // Set the text content of the title div
+        titleDiv.textContent = "Ventas del mes";
+    
+        // Set some styling for the title div
+        titleDiv.style.textAlign = "center";
+        titleDiv.style.fontSize = "24px";
+        titleDiv.style.fontWeight = "bold";
+        titleDiv.style.marginBottom = "20px";
+    
+        // Get the chart container
+        var chartContainer = document.getElementById('container');
+    
+        // Insert the title div before the chart container in the DOM
+        chartContainer.parentNode.insertBefore(titleDiv, chartContainer);
+    
+        const chartOptions = {
+            layout: {
+                textColor: 'white',
+                background: { type: 'solid', color: 'black' }
+            },
+            grid: {
+                    vertLines: {
+                        color: 'transparent'
+                    },
+                    horzLines: {
+                        color: 'transparent'
+                    }
+                }
+        };
+        const chart = LightweightCharts.createChart(document.getElementById('container'), chartOptions);
+        const areaSeries = chart.addAreaSeries({
+            lineColor: '#2962FF',
+            topColor: '#2962FF',
+            bottomColor: 'rgba(41, 98, 255, 0.28)'
+        });
+    
+        const data = [
+            { value: 0, time: new Date(1642425322 * 1000).toISOString() },
+            { value: 8, time: new Date(1642511722 * 1000).toISOString() },
+            { value: 10, time: new Date(1642598122 * 1000).toISOString() },
+            { value: 20, time: new Date(1642684522 * 1000).toISOString() },
+            { value: 3, time: new Date(1642770922 * 1000).toISOString() },
+            { value: 43, time: new Date(1642857322 * 1000).toISOString() },
+            { value: 41, time: new Date(1642943722 * 1000).toISOString() },
+            { value: 43, time: new Date(1643030122 * 1000).toISOString() },
+            { value: 56, time: new Date(1643116522 * 1000).toISOString() },
+            { value: 46, time: new Date(1643202922 * 1000).toISOString() },
+        ];
+    
+        areaSeries.setData(data);
+    
+        chart.timeScale().fitContent();
+    </script>
+    
 }
-

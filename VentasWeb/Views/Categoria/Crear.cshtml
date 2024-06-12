@@ -3,15 +3,29 @@
     ViewBag.Title = "Crear";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+.border-red {
+    border-color: #10707f !important;
+}
+
+.bg-yellow {
+    background-color: lightblue !important;
+    color: black !important; /* Change text color to black for better visibility */
+}
+
+
+</style>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Categoria</a></li>
+        <li class="breadcrumb-item"><a href="#"><i class="fas fa-tools"></i> Administracion</a></li>
         <li class="breadcrumb-item active" aria-current="page">Categorias</li>
     </ol>
 </nav>
 <div class="row">
     <div class="col-sm-12">
-        <div class="card border-info">
+        <div class="card border-red">
             <div class="card-header bg-info text-white">
                 Lista Categorias
             </div>
@@ -56,7 +70,7 @@
                     <input id="txtid" name="IdRol" value="0" type="hidden" />
                     <div class="form-group">
                         <label for="txtDescripcion" class="col-form-label">Descripcion: <span class="error"></span></label>
-                        <input type="text" class="form-control form-control-sm model" id="txtDescripcion" name="Descripcion">
+                        <input type="text" class="form-control form-control-sm model" id="txtDescripcion" name="Descripcion" placeholder="Digita Descripcion">
                     </div>
                     <div class="form-group">
                         <label for="cboEstado" class="col-form-label">Activo:</label>
