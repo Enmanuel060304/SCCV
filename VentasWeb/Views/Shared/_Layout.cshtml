@@ -15,6 +15,136 @@
     @Styles.Render("~/Content/PluginsCSS")
     @RenderSection("estilos", required: false)
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        /* styles.css */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 20px 0;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo h1 {
+            margin: 0;
+        }
+        
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        header nav ul li {
+            display: inline;
+        }
+        
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f4f4f4;
+            padding: 50px 0;
+        }
+        
+        .hero .container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 50%;
+        }
+        
+        .hero-content h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        
+        .hero-content p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        
+        .hero-content .btn {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+        }
+        
+        .features {
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .features .container {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .features .feature {
+            max-width: 30%;
+            text-align: center;
+        }
+        
+        .features .feature i {
+            font-size: 2em;
+            color: #007BFF;
+        }
+        
+        .features .feature h3 {
+            margin: 20px 0 10px;
+        }
+        
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        footer ul li a i {
+            font-size: 1.5em;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -84,7 +214,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Sistema Web de Facturacion de Compra y Venta</p>
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year Sistema de Facturacion de Compra y Venta.</p>
+                <ul>
+                    <li><a href="https://www.facebook.com/adioficial2022?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.instagram.com/adi_ofc2022?igsh=MTQ0ZG1vNGg5c2htZw==" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fad1-joyeria.my.canva.site%2F%3Ffbclid%3DIwZXh0bgNhZW0CMTAAAR1yLidfwtiQuZy8PETlZFd8GAcQ0jEhXf_ArVm4nzktjMCgPIUd1gAG1CQ_aem_n03IjLyQtV_XPA2MRgigrQ&h=AT01TIqj6YBWckdo8Casogqla0Ciu_uGkoIT-m8tZiykj2ZzUxeGA5zjuieTtkebYiHf4pmwnDCZmBeaphfuhyaE8qv7JFZUVPb0aa8gqF_cCv9HmomYVdj3LRylvMZwTwHJuQ" target="_blank"><i class="fab fa-wordpress"></i></a></li>
+                </ul>
+            </div>
         </footer>
     </div>
 

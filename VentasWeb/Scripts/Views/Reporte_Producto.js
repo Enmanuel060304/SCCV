@@ -99,6 +99,9 @@ function printData() {
 
     newWin.document.write(style);
     newWin.document.write("<h3>Reporte de productos por tienda</h3>");
+    newWin.document.write("<br>");
+    
+    
     newWin.document.write(divToPrint.outerHTML);
     newWin.print();
     newWin.close();
